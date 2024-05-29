@@ -24,21 +24,46 @@ namespace AspireApp13.CodeAnalyzer
         {
             context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.None);
             context.EnableConcurrentExecution();
-            context.RegisterSyntaxNodeAction(AnalyzeNode, SyntaxKind.LocalDeclarationStatement);
+            context.RegisterCompilationStartAction(compilationContext =>
+            {
+                var reportedNames = new HashSet<string>();
+
+                compilationContext.RegisterSyntaxNodeAction(nodeContext =>
+                {
+                    AnalyzeNode(nodeContext, reportedNames);
+                }, SyntaxKind.LocalDeclarationStatement);
+            });
         }
 
-        private static void AnalyzeNode(SyntaxNodeAnalysisContext context)
+        private static void AnalyzeNode(SyntaxNodeAnalysisContext context, HashSet<string> reportedNames)
         {
             var localDeclaration = (LocalDeclarationStatementSyntax)context.Node;
+            var parentBlock = localDeclaration.Parent as BlockSyntax;
+
+            if (parentBlock == null)
+            {
+                return;
+            }
 
             var variableNames = new HashSet<string>();
-            foreach (var variable in localDeclaration.Declaration.Variables)
+
+            foreach (var statement in parentBlock.Statements)
             {
-                var variableName = variable.Identifier.Text;
-                if (!variableNames.Add(variableName))
+                if (statement is LocalDeclarationStatementSyntax declaration)
                 {
-                    var diagnostic = Diagnostic.Create(Rule, variable.GetLocation(), variableName);
-                    context.ReportDiagnostic(diagnostic);
+                    foreach (var variable in declaration.Declaration.Variables)
+                    {
+                        var variableName = variable.Identifier.Text;
+                        if (!variableNames.Add(variableName))
+                        {
+                            if (!reportedNames.Contains(variableName))
+                            {
+                                var diagnostic = Diagnostic.Create(Rule, variable.GetLocation(), variableName);
+                                context.ReportDiagnostic(diagnostic);
+                                reportedNames.Add(variableName);
+                            }
+                        }
+                    }
                 }
             }
         }

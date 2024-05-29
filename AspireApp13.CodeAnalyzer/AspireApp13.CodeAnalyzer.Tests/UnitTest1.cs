@@ -30,7 +30,7 @@ namespace AspireApp13.CodeAnalyzer.Tests
                 Severity = DiagnosticSeverity.Warning,
                 Locations = new[]
                 {
-                    new DiagnosticResultLocation("Test0.cs", 7, 29)
+                    new DiagnosticResultLocation("Test0.cs", 7, 7)
                 }
             };
 

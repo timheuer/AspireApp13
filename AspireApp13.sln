@@ -1,4 +1,4 @@
-Microsoft Visual Studio Solution File, Format Version 12.00
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.34927.86
 MinimumVisualStudioVersion = 10.0.40219.1
@@ -9,6 +9,10 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspireApp13.ApiService", "AspireApp13.ApiService\AspireApp13.ApiService.csproj", "{C4DD7F68-5217-4E94-874F-62D5075CFA22}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspireApp13.Web", "AspireApp13.Web\AspireApp13.Web.csproj", "{36F3B851-236D-4D22-8DFF-30B0F1A21AAB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AspireApp13.CodeAnalyzer", "AspireApp13.CodeAnalyzer", "{4682E35E-D0D7-4688-BA00-626AD8164EF1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspireApp13.CodeAnalyzer", "AspireApp13.CodeAnalyzer\AspireApp13.CodeAnalyzer\AspireApp13.CodeAnalyzer.csproj", "{61164773-8836-4D9C-A571-020F218521DA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -32,11 +36,18 @@ Global
 		{36F3B851-236D-4D22-8DFF-30B0F1A21AAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{36F3B851-236D-4D22-8DFF-30B0F1A21AAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{36F3B851-236D-4D22-8DFF-30B0F1A21AAB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61164773-8836-4D9C-A571-020F218521DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61164773-8836-4D9C-A571-020F218521DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61164773-8836-4D9C-A571-020F218521DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61164773-8836-4D9C-A571-020F218521DA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {79E2CB5F-9D9E-4EC8-AE8A-77FCEE4F19C7}
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{61164773-8836-4D9C-A571-020F218521DA} = {4682E35E-D0D7-4688-BA00-626AD8164EF1}
 	EndGlobalSection
 EndGlobal
